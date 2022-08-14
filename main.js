@@ -233,6 +233,15 @@ house.add(doorLight);
 const fog = new THREE.Fog("#415a77", 1, 15);
 scene.fog = fog;
 
+// Ghosts ghost lights
+const ghost1 = new THREE.PointLight(0xff00ff, 2, 3);
+scene.add(ghost1);
+
+const ghost2 = new THREE.PointLight(0x00ffff, 2, 3);
+scene.add(ghost2);
+
+const ghost3 = new THREE.PointLight(0xffff00, 2, 3);
+scene.add(ghost3);
 /**
  * Sizes
  */
@@ -291,6 +300,22 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+
+  // Update lights (ghosts)
+  const ghostAngel1 = elapsedTime * 0.5;
+  ghost1.position.x = Math.sin(ghostAngel1) * 5;
+  ghost1.position.z = Math.cos(ghostAngel1) * 5;
+  ghost1.position.y = Math.sin(ghostAngel1 * 3);
+
+  const ghostAngel2 = -elapsedTime * 0.4;
+  ghost2.position.x = Math.sin(ghostAngel2) * 5;
+  ghost2.position.z = Math.cos(ghostAngel2) * 5;
+  ghost2.position.y = Math.sin(ghostAngel2 * 3);
+
+  const ghostAngel3 = -elapsedTime * 0.5;
+  ghost3.position.x = Math.sin(ghostAngel3) * 3;
+  ghost3.position.z = Math.cos(ghostAngel3) * 3;
+  ghost3.position.y = Math.sin(ghostAngel3 * 3);
 
   // Update controls
   controls.update();
